@@ -5,42 +5,44 @@ import (
 	"testing"
 )
 
-func TestBook(t *testing.T) {
-	t.Parallel()
-	_ = bookstore.Book{
-		Title:  "The Last Don",
-		Author: "Mario Puzzo",
-		Copies: 100,
-	}
-
-}
-
 func TestBuy(t *testing.T) {
 	t.Parallel()
-	b := bookstore.Book{
-		Title:  "Splinter Cell",
-		Author: "Tom Clancy",
-		Copies: 47,
+	books := []bookstore.Book{
+		{Title: "Half of a Yellow Sun", Author: "Chimamanda Adichie", Copies: 5},
+		{Title: "Things fall Apart", Author: "Chinua Achebe", Copies: 2},
+		{Title: "There was a Country", Author: "Chinua Achebe", Copies: 10},
 	}
-	want := 46
-	result, err := bookstore.Buy(b)
-	got := result.Copies
-	if want != got {
-		t.Errorf("Error: %s, want %d, got %d", err, want, got)
+
+	want := 4
+	result, err := bookstore.Buy(books, "Half of a Yellow Sun")
+
+	for _, b := range result {
+		if b.Title == "Half of a Yellow Sun" {
+			got := b.Copies
+			if want != got {
+				t.Errorf("Error: %s, want %d, got %d", err, want, got)
+			}
+		}
 	}
 }
 
 func TestStock(t *testing.T) {
 	t.Parallel()
-	b := bookstore.Book{
-		Title:  "splinter Cell",
-		Author: "Tom Clancy",
-		Copies: 47,
+	books := []bookstore.Book{
+		{Title: "Half of a Yellow Sun", Author: "Chimamanda Adichie", Copies: 5},
+		{Title: "Things fall Apart", Author: "Chinua Achebe", Copies: 2},
+		{Title: "There was a Country", Author: "Chinua Achebe", Copies: 10},
 	}
-	want := 48
-	result := bookstore.Stock(b)
-	got := result.Copies
-	if want != got {
-		t.Errorf("want %d, got %d", want, got)
+
+	want := 3
+	result, err := bookstore.Stock(books, "Things fall Apart")
+
+	for _, b := range result {
+		if b.Title == "Things fall Apart" {
+			got := b.Copies
+			if got != want {
+				t.Errorf("Error: %s, want %d, got %d", err, want, got)
+			}
+		}
 	}
 }

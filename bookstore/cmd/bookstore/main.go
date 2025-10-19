@@ -1,11 +1,16 @@
 package main
 
-import "bookstore"
+import (
+	"bookstore"
+	"fmt"
+)
 
-var b = bookstore.Book{
-	Title:  "Things fall Apart",
-	Author: "Chinua Achebe",
-	Copies: 20,
+func main() {
+	books := []bookstore.Book{
+		{Title: "Things Fall Apart", Author: "Chinua Achebe", Copies: 20},
+		{Title: "Half of a Yellow Sun", Author: "Chimamanda Adichie", Copies: 10},
+		{Title: "There was a Country", Author: "Chinua Achebe", Copies: 5},
+	}
+
+	fmt.Println(books)
 }
-
-func main() {}

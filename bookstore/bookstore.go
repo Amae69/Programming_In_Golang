@@ -8,15 +8,27 @@ type Book struct {
 	Copies int
 }
 
-func Buy(b Book) (Book, error) {
-	if b.Copies == 0 {
-		return b, errors.New("no copies left")
+// This Buy function reduces the number of copies of a specific book in our slice.
+func Buy(books []Book, title string) ([]Book, error) {
+	for i, b := range books {
+		if b.Title == title {
+			if b.Copies == 0 {
+				return books, errors.New("no copies left")
+			}
+			books[i].Copies--
+			return books, nil
+		}
 	}
-	b.Copies--
-	return b, nil
+	return books, errors.New("book not found")
 }
 
-func Stock(b Book) Book {
-	b.Copies++
-	return b
+// This Stock function increases the number of copies of a specific book in or slice.
+func Stock(books []Book, title string) ([]Book, error) {
+	for i, b := range books {
+		if b.Title == title {
+			books[i].Copies++
+			return books, nil
+		}
+	}
+	return books, errors.New("book not found")
 }
