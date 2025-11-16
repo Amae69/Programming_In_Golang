@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-	//"runtime"
 )
 
 const fileName = "tickets.csv"
