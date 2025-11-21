@@ -117,3 +117,54 @@ func ReadTickets() ([]Ticket, error) {
 	}
 	return out, nil
 }
+
+// DeleteTicket deletes a ticket by ID
+func DeleteTicket(id string) error {
+	tickets, err := ReadTickets()
+	if err != nil {
+		return err
+	}
+
+	var kept []Ticket
+	found := false
+	for _, t := range tickets {
+		if t.ID == id {
+			found = true
+			continue
+		}
+		kept = append(kept, t)
+	}
+
+	if !found {
+		return fmt.Errorf("ticket with ID %s not found", id)
+	}
+
+	// Rewrite file
+	path, err := getDataFile()
+	if err != nil {
+		return err
+	}
+
+	f, err := os.Create(path)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	w := csv.NewWriter(f)
+	defer w.Flush()
+
+	// Header
+	if err := w.Write([]string{"ID", "Date", "Title", "Customer", "Priority", "Status", "Description"}); err != nil {
+		return err
+	}
+
+	for _, t := range kept {
+		rec := []string{t.ID, t.Date, t.Title, t.Customer, t.Priority, t.Status, t.Description}
+		if err := w.Write(rec); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
