@@ -1,6 +1,6 @@
-# Building a Simple Ticket Tracker CLI in Go
+### A lightweight, command-line alternative to complex ticketing systems.
 
-*A lightweight, command-line alternative to complex ticketing systems.*
+Using golang and cobra-cli, I built a simple command-line interface for managing support tickets. Tickets are stored locally in a CSV file.
 
 ---
 
@@ -12,7 +12,7 @@ That's why I built **Ticket CLI**—a simple command-line tool written in Go to 
 
 ## The Tech Stack
 
-For this project, I chose:
+For this project, I choose:
 - **[Go](https://go.dev/)**: For its speed, simplicity, and ability to compile into a single binary.
 - **[Cobra](https://github.com/spf13/cobra)**: The industry standard for building modern CLI applications in Go. It handles flag parsing, subcommands, and help text generation effortlessly.
 - **Standard Library (`encoding/csv`)**: To keep dependencies low, I used Go's built-in CSV support for data persistence.
@@ -57,8 +57,7 @@ var addCmd = &cobra.Command{
         fmt.Println("Ticket saved with ID:", t.ID)
     },
 }
-```
-
+```		
 ### 2. Data Persistence (The "Database")
 
 Instead of setting up SQLite or a JSON store, I opted for CSV. It's human-readable and easy to debug. The `internal/storage` package handles reading and writing to `tickets.csv`.
@@ -95,6 +94,19 @@ go build -o ticket-cli .
 ```bash
 ./ticket-cli list
 ```
+### Filter by date
+```bash
+./ticket-cli list --date 2025-11-15
+```
+### CSV Storage
+A CSV file is created automatically at the Project directory, and it keeps getting updated, once a new ticket is added using the `.ticket-cli add --flags`
+
+### Columns :
+
+```
+ID, Date, Title, Customer, Priority, Status, Description
+```
+
 
 ## Future Improvements
 
@@ -108,4 +120,4 @@ This is just an MVP. Some ideas for the future include:
 Building CLI tools in Go is a rewarding experience. Cobra makes the interface professional, and Go's standard library handles the rest. If you're looking for a weekend project, try building your own developer tools!
 
 ---
-*Check out the code on [GitHub](https://github.com/yourusername/ticket-cli).*
+*Check out the code on [GitHub](https://github.com/Amae69/support_ticket-cli).*
