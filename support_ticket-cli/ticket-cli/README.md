@@ -38,7 +38,7 @@ List all tickets, optionally filtered by date.
 
 ```bash
 ./ticket-cli list
-./ticket-cli list --date 2025-10-27
+./ticket-cli list --date 2025-11-16
 ```
 
 ### Delete a Ticket
