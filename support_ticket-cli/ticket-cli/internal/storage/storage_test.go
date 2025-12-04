@@ -26,7 +26,12 @@ func TestAppendAndReadTickets(t *testing.T) {
 	if err := os.Chdir(tmpDir); err != nil {
 		t.Fatal(err)
 	}
-	defer os.Chdir(oldWd)
+	// defer os.Chdir(oldWd)
+	defer func() {
+		if err := os.Chdir(oldWd); err != nil {
+			t.Fatalf("failed to return to working directory: %v", err)
+		}
+	}()
 
 	// Test Append
 	ticket := Ticket{

@@ -5,3 +5,4 @@ ID,Date,Title,Customer,Priority,Status,Description
 1763283929365220957,2025-11-16,Deleting account,K-logistics,low,new,I need help deleting my account
 1763287802371954902,2025-11-16,About Subscription,OOL Motors,low,new,I need info about subscription
 1763717237519644300,2025-11-21,VM Provisioning,MTN Inc,high,new,need help setting up Azure VM 
+1764587510547292800,2025-12-01,Login failure,Acme Inc,high,new,User cannot login after reset

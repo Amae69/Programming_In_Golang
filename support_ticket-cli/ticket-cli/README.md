@@ -48,3 +48,4 @@ Delete a ticket by its ID.
 ```bash
 ./ticket-cli delete <ticket-id>
 ```
+END

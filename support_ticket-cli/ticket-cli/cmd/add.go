@@ -1,5 +1,5 @@
 /*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
+Copyright © 2025 NAME HERE ameachichristian10@gmail.com
 */
 package cmd
 
@@ -68,5 +68,8 @@ func init() {
 	addCmd.Flags().StringVar(&flagDescription, "description", "", "Longer description")
 	addCmd.Flags().StringVar(&flagDate, "date", "", "Ticket date YYYY-MM-DD (defaults to today)")
 
-	addCmd.MarkFlagRequired("title")
+	// addCmd.MarkFlagRequired("title")
+	if err := addCmd.MarkFlagRequired("title"); err != nil {
+		panic(err)
+	}
 }

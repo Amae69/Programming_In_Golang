@@ -11,9 +11,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var (
-	flagListDate string
-)
+var flagListDate string
 
 // listCmd represents the list command
 var listCmd = &cobra.Command{
